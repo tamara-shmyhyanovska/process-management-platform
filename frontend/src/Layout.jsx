@@ -9,6 +9,8 @@ import Processes from "./pages/Processes";
 import Analytics from "./pages/Analytics";
 import Employees from "./pages/Employees";
 import Settings from "./pages/Settings";
+import ProcessSetup from "./pages/ProcessSetup";
+import BuildProcess from "./pages/BuildProcess";
 
 function Layout() {
   return (
@@ -21,13 +23,15 @@ function Layout() {
         <Header />
 
         <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/processes" element={<Processes />} />
-        <Route path="/analytics" element={<Analytics />} />
-        <Route path="/employees" element={<Employees />} />
-        <Route path="/settings" element={<Settings />} />
-    </Routes>
+         <Route path="/" element={<Dashboard />} />
+         <Route path="/dashboard" element={<Dashboard />} />
+         <Route path="/processes" element={<Processes />} />
+         <Route path="/analytics" element={<Analytics />} />
+         <Route path="/employees" element={<Employees />} />
+         <Route path="/settings" element={<Settings />} />
+         <Route path="/process-setup" element={<ProcessSetup />} />
+         <Route path="/build-process" element={<BuildProcess />} />
+        </Routes>
 
       </div>
 

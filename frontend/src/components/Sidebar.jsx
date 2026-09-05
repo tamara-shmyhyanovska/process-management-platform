@@ -3,7 +3,8 @@ import {
   Workflow,
   BarChart3,
   Users,
-  Settings
+  Settings,
+  PlusCircle
 } from 'lucide-react'
 
 import { NavLink } from "react-router-dom";
@@ -47,6 +48,11 @@ function Sidebar() {
         <NavLink to="/settings" className="navigation-item">
           <Users size={19} />
           <span>Settings</span>
+        </NavLink>
+
+        <NavLink to="/build-process" className="navigation-item">
+          <PlusCircle size={19} />
+          <span>Build Process</span>
         </NavLink>
 
       </nav>

@@ -1,4 +1,28 @@
+import { useEffect, useState } from "react";
+import { createProcessFromTemplate } from "../api/processApi.js";
+
+
 function Processes() {
+  const [processes, setProcesses] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  
+  useEffect(() => {
+    async function loadProcesses() {
+      try {
+        const data = await getProcesses();
+        setProcesses(data);
+      } catch (error) {
+        console.error(error);
+        setError("Failed to load processes");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadProcesses();
+  }, []);
+
   return (
     <div className="processes-page">
 
@@ -23,118 +47,71 @@ function Processes() {
 
       <div className="table-container">
 
-        <table className="process-table">
+        {loading && (
+          <p>Loading processes...</p>
+        )}
 
-          <thead>
-            <tr>
-              <th>Process Name</th>
-              <th>Owner</th>
-              <th>Status</th>
-              <th>Priority</th>
-              <th>Progress</th>
-            </tr>
-          </thead>
+        {error && (
+          <p>{error}</p>
+        )}
+    
+      
+        {!loading && !error && (
+          <table className="process-table">
 
-          <tbody>
+            <thead>
+              <tr>
+                <th>Process Name</th>
+                <th>Owner</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th>Progress</th>
+              </tr>
+            </thead>
 
-            <tr>
-              <td>Order Fulfillment</td>
-              <td>Anna Becker</td>
+            <tbody>
 
-              <td>
-                <span className="status active">Active</span>
-              </td>
+              {processes.map((process) => (
+                <tr key={process.id}>
 
-              <td>
-                <span className="priority high">High</span>
-              </td>
+                  <td>{process.name}</td>
 
-              <td>
-                <div className="progress">
-                  <div className="progress-fill fill-90"></div>
-                </div>
-              </td>
-            </tr>
+                  <td>{process.owner}</td>
 
-            <tr>
-              <td>Employee Onboarding</td>
-              <td>Michael Weber</td>
+                  <td>
+                    <span
+                      className={`status ${process.status.toLowerCase()}`}
+                    >
+                      {process.status}
+                    </span>
+                  </td>
 
-              <td>
-                <span className="status completed">Completed</span>
-              </td>
+                  <td>
+                    <span
+                      className={`priority ${process.priority.toLowerCase()}`}
+                    >
+                      {process.priority}
+                    </span>
+                  </td>
 
-              <td>
-                <span className="priority medium">Medium</span>
-              </td>
+                  <td>
+                    <div className="progress">
+                      <div
+                        className="progress-fill"
+                        style={{
+                          width: `${process.progress}%`,
+                        }}
+                      ></div>
+                    </div>
+                  </td>
 
-              <td>
-                <div className="progress">
-                  <div className="progress-fill fill-70"></div>
-                </div>
-              </td>
-            </tr>
+                </tr>
+              ))}
 
-            <tr>
-              <td>Invoice Approval</td>
-              <td>Lisa Hoffmann</td>
+            </tbody>
 
-              <td>
-                <span className="status pending">Pending</span>
-              </td>
-
-              <td>
-                <span className="priority high">High</span>
-              </td>
-
-              <td>
-                <div className="progress">
-                  <div className="progress-fill fill-55"></div>
-                </div>
-              </td>
-            </tr>
-
-            <tr>
-              <td>Customer Complaint</td>
-              <td>Thomas Klein</td>
-
-              <td>
-                <span className="status review">Review</span>
-              </td>
-
-              <td>
-                <span className="priority low">Low</span>
-              </td>
-
-              <td>
-                <div className="progress">
-                  <div className="progress-fill fill-30"></div>
-                </div>
-              </td>
-            </tr>
-
-            <tr>
-              <td>IT Access Request</td>
-              <td>Emma Fischer</td>
-
-              <td>
-                <span className="status active">Active</span>
-              </td>
-
-              <td>
-                <span className="priority medium">Medium</span>
-              </td>
-
-              <td>
-                <div className="progress">
-                  <div className="progress-fill fill-80"></div>
-                </div>
-              </td>
-            </tr>
-
-          </tbody>
-
-        </table>
+          </table>
+        )}
 
       </div>
 
