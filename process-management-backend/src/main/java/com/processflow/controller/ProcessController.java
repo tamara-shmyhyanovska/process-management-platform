@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/processes")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:5175")
 public class ProcessController {
 
     private final ProcessService processService;
@@ -26,10 +26,16 @@ public class ProcessController {
     public Process getProcessById(@PathVariable Long id) {
         return processService.getProcessById(id);
     }
-
-    @PostMapping
+    @PostMapping 
     public Process createProcess(@RequestBody Process process) {
-        return processService.createProcess(process);
+    	return processService.createProcess(process);
+    }
+    
+    @PostMapping("/from-template/{templateId}")
+    public Process createProcessFromTemplate (
+        @PathVariable Long templateId) {
+      return processService.createProcessFromTemplate(templateId);
+        
     }
 
     @PutMapping("/{id}")

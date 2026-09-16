@@ -1,7 +1,12 @@
 package com.processflow.service;
 
 import com.processflow.entity.Process;
+import com.processflow.entity.ProcessStep;
+import com.processflow.entity.ProcessTemplateStep;
 import com.processflow.repository.ProcessRepository;
+import com.processflow.repository.ProcessStepRepository;
+import com.processflow.repository.ProcessTemplateStepRepository;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,9 +15,17 @@ import java.util.List;
 public class ProcessService {
 
     private final ProcessRepository processRepository;
+    private final ProcessStepRepository processStepRepository;
+    private final ProcessTemplateStepRepository templateStepRepository;
 
-    public ProcessService(ProcessRepository processRepository) {
+    public ProcessService(
+            ProcessRepository processRepository,
+            ProcessStepRepository processStepRepository,
+            ProcessTemplateStepRepository templateStepRepository) {
+
         this.processRepository = processRepository;
+        this.processStepRepository = processStepRepository;
+        this.templateStepRepository = templateStepRepository;
     }
 
     public List<Process> getAllProcesses() {
@@ -20,26 +33,58 @@ public class ProcessService {
     }
 
     public Process getProcessById(Long id) {
-        return processRepository.findById(id).orElse(null);
+        return processRepository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException("Process not found: " + id));
     }
 
     public Process createProcess(Process process) {
         return processRepository.save(process);
     }
 
-    public Process updateProcess(Long id, Process updatedProcess) {
+    public Process createProcessFromTemplate(Long templateId) {
 
-        Process existingProcess = processRepository.findById(id).orElse(null);
+        Process process = new Process();
 
-        if (existingProcess == null) {
-            return null;
+        process.setName("New Process");
+        process.setOwner("Business Owner");
+        process.setStatus("ACTIVE");
+        process.setPriority("MEDIUM");
+        process.setProgress(0);
+
+        Process savedProcess = processRepository.save(process);
+
+        List<ProcessTemplateStep> templateSteps =
+                templateStepRepository
+                        .findByTemplateIdOrderByStepOrderAsc(templateId);
+
+        for (ProcessTemplateStep templateStep : templateSteps) {
+
+            ProcessStep step = new ProcessStep();
+
+            step.setName(templateStep.getName());
+            step.setStepOrder(templateStep.getStepOrder());
+            step.setExpectedDurationHours(
+                    templateStep.getExpectedDurationHours()
+            );
+            step.setStatus("PENDING");
+            step.setProcess(savedProcess);
+
+            processStepRepository.save(step);
         }
 
-        existingProcess.setName(updatedProcess.getName());
-        existingProcess.setOwner(updatedProcess.getOwner());
-        existingProcess.setStatus(updatedProcess.getStatus());
-        existingProcess.setPriority(updatedProcess.getPriority());
-        existingProcess.setProgress(updatedProcess.getProgress());
+        return savedProcess;
+    }
+
+    public Process updateProcess(Long id, Process process) {
+
+        Process existingProcess = getProcessById(id);
+
+        existingProcess.setName(process.getName());
+        existingProcess.setOwner(process.getOwner());
+        existingProcess.setStatus(process.getStatus());
+        existingProcess.setPriority(process.getPriority());
+        existingProcess.setProgress(process.getProgress());
 
         return processRepository.save(existingProcess);
     }

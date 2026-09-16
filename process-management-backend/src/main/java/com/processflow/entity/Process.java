@@ -20,6 +20,9 @@ public class Process {
 
     private Integer progress;
 
+    @OneToMany(mappedBy = "process", cascade = CascadeType.ALL)
+    private java.util.List<ProcessStep> steps;
+    
     public Process() {
     }
 
@@ -65,5 +68,13 @@ public class Process {
 
     public void setProgress(Integer progress) {
         this.progress = progress;
+    }
+    
+    public java.util.List<ProcessStep> getSteps() {
+        return steps;
+    }
+
+    public void setSteps(java.util.List<ProcessStep> steps) {
+        this.steps = steps;
     }
 }
