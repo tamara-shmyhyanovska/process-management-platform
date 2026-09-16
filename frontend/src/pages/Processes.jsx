@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { createProcessFromTemplate } from "../api/processApi.js";
-
+import { getProcesses } from "../api/processApi.js";
 
 function Processes() {
   const [processes, setProcesses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  
+
   useEffect(() => {
     async function loadProcesses() {
       try {
@@ -54,8 +53,7 @@ function Processes() {
         {error && (
           <p>{error}</p>
         )}
-    
-      
+
         {!loading && !error && (
           <table className="process-table">
 
@@ -72,7 +70,13 @@ function Processes() {
             <tbody>
 
               {processes.map((process) => (
-                <tr key={process.id}>
+                <tr 
+                  key={process.id}
+                  onClick={() => {
+                    window.location.href = `/processes/${process.id}`;
+                  }}
+                  style={{ cursor: "pointer" }}
+                  >
 
                   <td>{process.name}</td>
 
@@ -80,7 +84,7 @@ function Processes() {
 
                   <td>
                     <span
-                      className={`status ${process.status.toLowerCase()}`}
+                      className={`status ${process.status?.toLowerCase()}`}
                     >
                       {process.status}
                     </span>
@@ -88,7 +92,7 @@ function Processes() {
 
                   <td>
                     <span
-                      className={`priority ${process.priority.toLowerCase()}`}
+                      className={`priority ${process.priority?.toLowerCase()}`}
                     >
                       {process.priority}
                     </span>

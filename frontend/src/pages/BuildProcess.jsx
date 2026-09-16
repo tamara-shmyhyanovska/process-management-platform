@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { getIndustries } from "../api/industryApi";
 import { getTemplatesByIndustry } from "../api/processTemplateApi";
+import { createProcessFromTemplate } from "../api/processApi";
 
 
 function BuildProcess() {
   const [industries, setIndustries] = useState([]);
   const [selectedIndustry, setSelectedIndustry] = useState(null);
   const [templates, setTemplates] = useState([]);
+
+
 
   useEffect(() => {
     getIndustries()
@@ -42,6 +45,17 @@ function BuildProcess() {
         <p>
           Choose your business type and start with a process template.
         </p>
+      </div>
+
+      <div className="create-process-section">
+        <button
+          className="create-process-button"
+          onClick={() => {
+            window.location.href = "/processes/new";
+          }}
+        >
+          + Create New Process
+        </button>
       </div>
 
       <section>
@@ -85,9 +99,19 @@ function BuildProcess() {
                   <p>{template.description}</p>
 
                   <button
-                    onClick={ () => {
-                     alert("BUTTON WORKS");
-                     console.log("Selected template:", template);
+                    onClick={async() => {
+                     try{
+                      const process = await
+                      createProcessFromTemplate(template.id);
+
+                      alert("Process created successfully!");
+
+                      console.log("Created process:", process);
+                     } catch (error) {
+                      console.error("Failed to create process:", error);
+                      
+                      alert("Failed to create process.")
+                     }
                    }}
                   > 
                     Use this template

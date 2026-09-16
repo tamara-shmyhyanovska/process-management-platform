@@ -6,11 +6,13 @@ import { Routes, Route } from "react-router-dom";
 
 import Dashboard from "./pages/Dashboard";
 import Processes from "./pages/Processes";
+import ProcessDetails from "./pages/ProcessDetails";
 import Analytics from "./pages/Analytics";
 import Employees from "./pages/Employees";
 import Settings from "./pages/Settings";
 import ProcessSetup from "./pages/ProcessSetup";
 import BuildProcess from "./pages/BuildProcess";
+import CreateProcess from "./pages/CreateProcess";
 
 function Layout() {
   return (
@@ -26,6 +28,8 @@ function Layout() {
          <Route path="/" element={<Dashboard />} />
          <Route path="/dashboard" element={<Dashboard />} />
          <Route path="/processes" element={<Processes />} />
+         <Route path="/processes/new" element={<CreateProcess />} />
+         <Route path="/processes/:id" element={<ProcessDetails />} />
          <Route path="/analytics" element={<Analytics />} />
          <Route path="/employees" element={<Employees />} />
          <Route path="/settings" element={<Settings />} />
