@@ -82,9 +82,7 @@ export async function getProcessIntelligence(processId) {
   );
 
   if (!response.ok) {
-    throw new Error(
-      "Failed to load process intelligence"
-    );
+    throw new Error("Failed to load process intelligence");
   }
 
   return response.json();
@@ -97,6 +95,18 @@ export async function getProcessEvents(processId) {
 
   if (!response.ok) {
     throw new Error("Failed to load process events");
+  }
+
+  return response.json();
+}
+
+export async function getAllProcessEvents() {
+  const response = await fetch(
+    "http://localhost:8080/api/process-events"
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to load all process events");
   }
 
   return response.json();
