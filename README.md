@@ -1,84 +1,58 @@
-ProcessFlow — Business Process Intelligence Platform
+ProcessFlow
 
-A practical tool for understanding how work moves through a business.
+Business Software & Data Platform
 
-ProcessFlow is a web application I developed to explore how business processes can be structured, monitored and analysed in one place.
+A web application for managing workflows and understanding operational data.
 
-The idea behind the project is simple: a process may look organised on paper, while everyday work tells a different story. Tasks can take longer than expected, delays can accumulate at particular steps, and too much work can depend on one employee.
+🎯Overview
 
-I wanted to build something that goes beyond storing process information — a system that can turn recorded activity into useful insights.
+I developed ProcessFlow as a practical project combining application development, database design and business-oriented problem solving.
 
-Why I built it
+The idea is to bring process information into one place, make everyday workflows easier to manage and turn recorded activity into useful insights.
 
-My interest in this project comes from the connection between business operations, data and process analysis.
+🚀Features
 
-A company does not always need more data. Sometimes it needs a clearer view of the data it already has. Which steps take the longest? How often are activities delayed? Is the workload concentrated around one person? Where would a closer look at the workflow be most useful?
+- Create and manage processes
+- Build workflows from templates or from scratch
+- Define steps, responsibilities and priorities
+- Record and track process events
+- Analyse completion, delays and processing times
+- Identify potential bottlenecks and employee dependencies
+- View key indicators in a dashboard
 
-These questions shaped the direction of ProcessFlow.
+⚙️Technology
 
-The project also reflects the field I want to develop in professionally: Prozessanalyse (process analysis), data-driven decision-making and Prozessoptimierung (process improvement).
+Area| Technology
+Frontend| React, JavaScript
+Backend| Java, Spring Boot
+API| REST, JSON
+Database| PostgreSQL
+Data Access| Spring Data JPA, Hibernate
 
-What ProcessFlow can do
+The frontend communicates with the backend through a REST API. The backend handles application logic and database operations.
 
-- Create and manage business processes.
-- Start with a process template or build a process from scratch.
-- Define process steps, owners, priorities and statuses.
-- Record process events and track their progress.
-- View process activity and performance in a dashboard.
-- Analyse completion rates, delays and average durations.
-- Identify potential bottlenecks and employee dependencies.
-
-Process Intelligence
-
-ProcessFlow calculates several indicators from recorded process events:
-
-Indicator| What it shows
-Completion rate| The share of events marked as completed
-Delay rate| The share of events marked as delayed
-Average duration| The average recorded event duration
-Bottleneck step| The step with the highest average recorded duration
-Employee activity| How recorded events are distributed across employees
-Employee dependency| How concentrated process activity is among employees
-
-These indicators provide a starting point for further investigation. A long duration can highlight where to look, but it does not automatically explain why a delay occurred.
-
-Technology
-
-- Frontend: React, JavaScript, HTML and CSS
-- Build tool: Vite
-- Backend: Java and Spring Boot
-- Communication: REST API and JSON
-- Database: PostgreSQL
-- Persistence: Spring Data JPA and Hibernate
-
-Architecture
+🏗️ Architecture
 
 The application separates the user interface, backend logic and data storage.
 
-The React frontend displays processes and analysis results. The Spring Boot backend exposes REST endpoints, applies application logic and communicates with PostgreSQL. This structure keeps the main responsibilities separate and makes the application easier to extend.
+React Frontend
+      |
+      | REST API / JSON
+      v
+Spring Boot Backend
+      |
+      | JPA / Hibernate
+      v
+PostgreSQL Database
 
-Current Scope
+This separation makes the application easier to maintain and extend.
 
-This is a local MVP built as part of my professional portfolio. It demonstrates process management, persistent data storage and basic process-performance analysis.
+🧩Project Status
 
-Authentication, multi-user access, cloud deployment and external CSV/Excel data import are not yet implemented.
+Local MVP
 
-Running the Frontend
+The current version covers core workflow management, event tracking and basic data analysis. Authentication, external data import and cloud deployment are planned as possible future extensions.
 
-You need Node.js and npm installed.
+👩‍💻Objective
 
-From the project root, open a terminal and run:
-
-cd frontend
-npm install
-npm run dev
-
-Vite will display the local address where the frontend is available.
-
-Future Improvements
-
-Possible next steps include importing process data from CSV or Excel, comparing performance over time, adding authentication and deploying the application online.
-
-About This Project
-
-I built ProcessFlow to develop my skills in software development and data-driven process analysis. The project reflects my interest in how structured data and practical software tools can help businesses understand their workflows and identify opportunities for improvement.
+My goal is to strengthen my skills in software development, structured data management and the practical use of information to improve how a business operates.
