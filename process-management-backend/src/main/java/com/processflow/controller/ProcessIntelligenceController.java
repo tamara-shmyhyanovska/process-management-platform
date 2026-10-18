@@ -7,7 +7,10 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/processes")
-@CrossOrigin(origins = "http://localhost:5175")
+@CrossOrigin(origins = {
+    "http://localhost:5175",
+    "http://localhost:5173"
+})
 public class ProcessIntelligenceController {
 
     private final ProcessIntelligenceService intelligenceService;
