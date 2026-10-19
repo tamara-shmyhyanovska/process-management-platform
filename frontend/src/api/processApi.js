@@ -1,4 +1,7 @@
-const API_URL = "http://localhost:8080/api/processes";
+const BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+
+const API_URL = `${BASE_URL}/api/processes`;
 
 export async function getProcesses() {
   const response = await fetch(API_URL);
@@ -13,12 +16,7 @@ export async function getProcesses() {
 export async function createProcessFromTemplate(templateId) {
   const response = await fetch(
     `${API_URL}/from-template/${templateId}`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
+    { method: "POST" }
   );
 
   if (!response.ok) {
@@ -40,12 +38,10 @@ export async function getProcessById(id) {
 
 export async function createProcessStep(processId, step) {
   const response = await fetch(
-    `http://localhost:8080/api/process-steps/process/${processId}`,
+    `${BASE_URL}/api/process-steps/process/${processId}`,
     {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(step),
     }
   );
@@ -58,16 +54,11 @@ export async function createProcessStep(processId, step) {
 }
 
 export async function createProcess(process) {
-  const response = await fetch(
-    "http://localhost:8080/api/processes",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(process),
-    }
-  );
+  const response = await fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(process),
+  });
 
   if (!response.ok) {
     throw new Error("Failed to create process");
@@ -90,7 +81,7 @@ export async function getProcessIntelligence(processId) {
 
 export async function getProcessEvents(processId) {
   const response = await fetch(
-    `http://localhost:8080/api/process-events/process/${processId}`
+    `${BASE_URL}/api/process-events/process/${processId}`
   );
 
   if (!response.ok) {
@@ -102,7 +93,7 @@ export async function getProcessEvents(processId) {
 
 export async function getAllProcessEvents() {
   const response = await fetch(
-    "http://localhost:8080/api/process-events"
+    `${BASE_URL}/api/process-events`
   );
 
   if (!response.ok) {

@@ -1,4 +1,7 @@
-const API_URL = "http://localhost:8080/api/process-templates";
+const BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+
+const API_URL = `${BASE_URL}/api/process-templates`;
 
 export async function getTemplatesByIndustry(industryId) {
   const response = await fetch(
