@@ -1,58 +1,102 @@
-ProcessFlow
+# ProcessFlow — Process Management Platform
 
-Business Software & Data Platform
+A full-stack web application for managing business processes, organising workflows and analysing operational performance.
 
-A web application for managing workflows and understanding operational data.
+ **ProcessFlow** connects application development with structured data management. The goal is to make workflows easier to understand, track process execution and identify areas where operations could be improved.
 
-🎯Overview
 
-I developed ProcessFlow as a practical project combining application development, database design and business-oriented problem solving.
 
-The idea is to bring process information into one place, make everyday workflows easier to manage and turn recorded activity into useful insights.
+## Demo
 
-🚀Features
+![Watch the 55-second demo video](https://drive.google.com/file/d/1h901C-gviNMBj2AF2SgHLruM0n3LZ64q/view?usp=sharing)
 
-- Create and manage processes
-- Build workflows from templates or from scratch
-- Define steps, responsibilities and priorities
-- Record and track process events
-- Analyse completion, delays and processing times
-- Identify potential bottlenecks and employee dependencies
-- View key indicators in a dashboard
+## Screenshots
 
-⚙️Technology
+### Dashboard
 
-Area| Technology
-Frontend| React, JavaScript
-Backend| Java, Spring Boot
-API| REST, JSON
-Database| PostgreSQL
-Data Access| Spring Data JPA, Hibernate
+![ProcessFlow Dashboard](docs/screenshots/01-dashboard.png)
 
-The frontend communicates with the backend through a REST API. The backend handles application logic and database operations.
+### Process Intelligence
 
-🏗️ Architecture
+![Process Intelligence](docs/screenshots/02-intelligence.png)
 
-The application separates the user interface, backend logic and data storage.
+### Process Management
+
+![Process Management](docs/screenshots/03-processes.png)
+
+### Analytics
+
+![Process Analytics](docs/screenshots/04-analytics.png)
+
+![View all screenshots](docs/screenshots/)
+
+## Key Features
+
+- Create and manage business processes
+- Start workflows from templates or build them from scratch
+- Organise process steps, responsibilities and priorities
+- Record process events and track execution
+- Review completion rates, delays and processing times
+- Explore potential bottlenecks and employee dependencies
+- Display operational indicators in a dashboard
+
+## Technical Architecture
+
+The application separates the user interface, application logic and data persistence.
 
 React Frontend
-      |
-      | REST API / JSON
-      v
+      |
+      | REST API (JSON / HTTP)
+      v
 Spring Boot Backend
-      |
-      | JPA / Hibernate
-      v
+      |
+      | Spring Data JPA / Hibernate
+      v
 PostgreSQL Database
 
-This separation makes the application easier to maintain and extend.
+This structure supports separation of concerns and makes individual parts easier to maintain and extend.
 
-🧩Project Status
+## Technology Stack
 
-Local MVP
+Area| Technologies
+Frontend| React, JavaScript, HTML, CSS
+Backend| Java, Spring Boot
+API| REST, JSON, HTTP
+Database| PostgreSQL
+Data Access| Spring Data JPA, Hibernate
+Tools| Visual Studio Code, Eclipse, Git, GitHub
 
-The current version covers core workflow management, event tracking and basic data analysis. Authentication, external data import and cloud deployment are planned as possible future extensions.
+## Project Focus
 
-👩‍💻Objective
+This project combines several areas of software development:
 
-My goal is to strengthen my skills in software development, structured data management and the practical use of information to improve how a business operates.
+- Application development: building a user interface and connecting it to backend services.
+- Backend logic: structuring application responsibilities and exposing REST endpoints.
+- Database design: representing processes, steps, employees, departments and process events.
+- Data analysis: deriving operational indicators from recorded process activity.
+- Process improvement: using metrics to explore delays, dependencies and potential bottlenecks.
+
+## Current Status
+
+ProcessFlow is a portfolio MVP under active development. The project demonstrates the intended application structure and core workflow-management concepts.
+
+The live preview and backend integration may not yet expose every feature consistently. The screenshots and demo video provide a visual overview of the interface; the source code shows the implementation.
+
+ ## Future Improvements
+
+- Improve reliability of the deployed frontend and backend integration
+- Add authentication and role-based access
+- Expand validation and error handling
+- Improve automated testing
+- Add data import and export options
+- Extend process analysis and reporting
+
+## About This Project
+
+I developed ProcessFlow as a practical way to strengthen my skills in application development, databases, APIs and business process analysis.
+
+The project reflects my interest in building software that not only stores information, but also helps users understand how work is organised and where it can be improved.
+
+---
+
+*Portfolio project by Tamara Shmyhanovska.*
