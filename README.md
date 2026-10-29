@@ -7,7 +7,9 @@ A full-stack web application for managing business processes, organising workflo
 
 
 ## Demo
-![Demo-video](https://youtu.be/RWgOeAD3Kqs?si=O35W3HDEi6ceKyEi)
+[![ProcessFlow Demo](https://img.youtube.com/vi/RWgOeAD3Kqs/hqdefault.jpg)](https://www.youtube.com/watch?v=RWgOeAD3Kqs)
+
+▶️ [Watch the demo on YouTube](https://youtu.be/RWgOeAD3Kqs)
 
 ## Screenshots
 
