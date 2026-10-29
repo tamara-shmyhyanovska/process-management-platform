@@ -7,7 +7,7 @@ A full-stack web application for managing business processes, organising workflo
 
 
 ## Demo
-![Watch the 55-second demo video](https://drive.google.com/file/d/1FUIGfg9kGQvV-dJaqlwiq4lHYaPjcmXq/view?usp=sharing)
+![Demo-video](https://youtu.be/RWgOeAD3Kqs?si=O35W3HDEi6ceKyEi)
 
 ## Screenshots
 
